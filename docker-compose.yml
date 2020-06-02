@@ -1,0 +1,17 @@
+version: "2.1"
+services:
+  react-app:
+    # stdin_open: true is required to prevent the container from stopping after running 'npm start'
+    stdin_open: true 
+    container_name: react-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "npm start"
+    # mount the local files so that our container can live-reload our changes
+    volumes:
+      - ./src:/src
+      - ./public:/public
+    ports:
+      - "3000:3000"
+
